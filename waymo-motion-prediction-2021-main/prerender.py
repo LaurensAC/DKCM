@@ -1,11 +1,18 @@
+import os
+os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
 import argparse
 import multiprocessing
-import os
-
 import cv2
 import numpy as np
 import tensorflow as tf
 from tqdm import tqdm
+
+print("Num GPUs Available: ", len(tf.config.list_physical_devices('GPU')))
+
+import tensorflow as tf
+import glob
+
 
 roadgraph_features = {
     "roadgraph_samples/dir": tf.io.FixedLenFeature(
@@ -189,7 +196,7 @@ def parse_arguments():
         "--use-vectorize", action="store_true", help="Generate vector data"
     )
     parser.add_argument(
-        "--n-jobs", type=int, default=20, required=False, help="Number of threads"
+        "--n-jobs", type=int, default=1, required=False, help="Number of threads"
     )
     parser.add_argument(
         "--n-shards",
@@ -788,10 +795,12 @@ def merge(
         )
 
     for i in range(len(raster_data)):
+        if idx2type[int(raster_data[i]['self_type'])] != 'cyclist':
+            continue
         if use_vectorize:
             raster_data[i]["vector_data"] = vector_data[i].astype(np.float16)
 
-        r = np.random.randint(max_rand_int)
+        r = np.random.randint(max_rand_int, dtype=np.int64)
         filename = f"{idx2type[int(raster_data[i]['self_type'])]}_{proc_id}_{str(i).zfill(5)}_{r}.npz"
         np.savez_compressed(os.path.join(out_dir, filename), **raster_data[i])
 

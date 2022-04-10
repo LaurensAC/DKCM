@@ -1,0 +1,9 @@
+python prerender.py --data D:\data\training --out ./train --n-shards 1
+
+python prerender.py --data C:\Users\Laurens\Desktop\MasterThesis\data_cleaned\validation --out ./dev --use-vectorize --n-shards 1
+
+python prerender.py --data --data C:\Users\Laurens\Desktop\MasterThesis\data_cleaned\testing --out ./test --use-vectorize --n-shards 1
+
+python train.py --train-data ./train --dev-data ./dev --save ./model --model xception71 --img-res 224 --in-channels 25 --time-limit 80 --n-traj 6 --lr 0.001 --batch-size 8 --n-epochs 50
+
+python visualize.py --model C:\Users\Laurens\Desktop\MasterThesis\waymo-motion-prediction-2021-main\model\model_best.pt --data C:\Users\Laurens\Desktop\MasterThesis\waymo-motion-prediction-2021-main\dev --save ./viz_cyclist

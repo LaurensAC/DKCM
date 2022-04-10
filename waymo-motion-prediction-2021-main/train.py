@@ -14,6 +14,8 @@ IN_CHANNELS = 25
 TL = 80
 N_TRAJS = 6
 
+torch.cuda.empty_cache()
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -184,7 +186,7 @@ class WaymoLoader(Dataset):
                 data["_gt_marginal"],
                 data["gt_marginal"],
             )
-
+       
         trajectory = data["gt_marginal"]
 
         is_available = data["future_val_marginal"]
@@ -209,7 +211,7 @@ def main():
     dataset = WaymoLoader(train_path)
 
     batch_size = args.batch_size
-    num_workers = min(16, batch_size)
+    num_workers = min(1, batch_size)
     dataloader = DataLoader(
         dataset,
         batch_size=batch_size,

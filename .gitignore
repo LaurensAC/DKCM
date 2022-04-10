@@ -152,6 +152,7 @@ cython_debug/
 #.idea/
 /data
 /data_cleaned
+/waymo-motion-prediction-2021-main/model
 data.tfrecords
 examples.ipynb
 README.md
