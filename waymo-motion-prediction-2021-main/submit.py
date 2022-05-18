@@ -58,7 +58,7 @@ def main():
 
     dataset = WaymoLoader(args.test_data, is_test=True)
     loader = DataLoader(
-        dataset, batch_size=args.batch_size, num_workers=min(args.batch_size, 16)
+        dataset, batch_size=args.batch_size, num_workers=min(args.batch_size, 1)
     )
 
     RES = {}
@@ -84,12 +84,12 @@ def main():
                 )
 
     motion_challenge_submission = motion_submission_pb2.MotionChallengeSubmission()
-    motion_challenge_submission.account_name = args.account_name
+    motion_challenge_submission.account_name = "laurenscastelijns@gmail.com"
     motion_challenge_submission.authors.extend(args.authors.split(","))
     motion_challenge_submission.submission_type = (
         motion_submission_pb2.MotionChallengeSubmission.SubmissionType.MOTION_PREDICTION
     )
-    motion_challenge_submission.unique_method_name = args.method_name
+    motion_challenge_submission.unique_method_name = "TUELAC"
 
     selector = np.arange(4, args.time_limit + 1, 5)
     for scenario_id, data in tqdm(RES.items()):

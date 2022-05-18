@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<!-- saved from url=(0103)http://webcache.googleusercontent.com/search?q=cache:https://waymo.com/intl/en_us/dataset-example-spec/ -->
+<html lang="en_US" class="dark tb-browser-marker tb-browser-marker--chrome tb-os-marker tb-os-marker--windows-10"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><!--<base href="https://waymo.com/intl/en_us/dataset-example-spec/">--><base href="."><style>body{margin-left:0;margin-right:0;margin-top:0}#bN015htcoyT__google-cache-hdr{background:#f8f9fa;font:13px arial,sans-serif;text-align:left;color:#202124;border:0;margin:0;border-bottom:1px solid #dadce0;line-height:16px;padding:16px 28px 24px 28px}#bN015htcoyT__google-cache-hdr *{display:inline;font:inherit;text-align:inherit;color:inherit;line-height:inherit;background:none;border:0;margin:0;padding:0;letter-spacing:0}#bN015htcoyT__google-cache-hdr a{text-decoration:none;color:#1a0dab}#bN015htcoyT__google-cache-hdr a:hover{text-decoration:underline}#bN015htcoyT__google-cache-hdr a:visited{color:#681da8}#bN015htcoyT__google-cache-hdr div{display:block;margin-top:4px}#bN015htcoyT__google-cache-hdr b{font-weight:bold;display:inline-block;direction:ltr}</style><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style>@media (min-width: 900px) {.ak-video-fallback .ak-video-fallback__image{display:none !important}}</style><style>@media (max-width: 899px) {.ak-video-fallback video{display:none !important}}</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://waymo.com/static/js/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+</style></head><body class="page page--dataset-example-spec en_US page--scroll-up" ng-class="{&#39;page--menu-toggled&#39;: $root.menuToggled}"><div id="bN015htcoyT__google-cache-hdr"><div><span>This is Google's cache of <a href="https://waymo.com/intl/en_us/intl/en_us/dataset-example-spec/">https://waymo.com/intl/en_us/dataset-example-spec/</a>.</span>&nbsp;<span>It is a snapshot of the page as it appeared on 10 May 2022 16:04:37 GMT.</span>&nbsp;<span>The <a href="https://waymo.com/intl/en_us/intl/en_us/dataset-example-spec/">current page</a> could have changed in the meantime.</span>&nbsp;<a href="http://support.google.com/websearch/bin/answer.py?hl=en&amp;p=cached&amp;answer=1687222"><span>Learn more</span>.</a></div><div><span style="display:inline-block;margin-top:8px;margin-right:104px;white-space:nowrap"><span style="margin-right:28px"><span style="font-weight:bold">Full version</span></span><span style="margin-right:28px"><a href="http://webcache.googleusercontent.com/search?q=cache:https://waymo.com/intl/en_us/dataset-example-spec/&amp;strip=1&amp;vwsrc=0"><span>Text-only version</span></a></span><span style="margin-right:28px"><a href="http://webcache.googleusercontent.com/search?q=cache:https://waymo.com/intl/en_us/dataset-example-spec/&amp;strip=0&amp;vwsrc=1"><span>View source</span></a></span></span></div><span style="display:inline-block;margin-top:8px;color:#70757a"><span>Tip: To quickly find your search term on this page, press <b>Ctrl+F</b> or <b>⌘-F</b> (Mac) and use the find bar.</span></span></div><div style="position:relative;">
+
+  
+    
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="google-site-verification" content="L6L1Rmx5ZlNO5JA2xUQHbP597OZ9FiocAKCv6nCMFkQ">
+
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+    <link rel="canonical" href="https://waymo.com/intl/en_us/dataset-example-spec/">
+    <link rel="shortcut icon" href="https://waymo.com/static/images/header/icon.png">
+    <meta property="og:logo" content="/static/images/header/icon.png">
+      <title>Example Spec – Waymo</title>
+      <meta property="og:title" content="Example Spec – Waymo">
+    <meta property="og:url" content="https://waymo.com/intl/en_us/dataset-example-spec/">
+    <meta property="og:type" content="website">
+      <meta property="og:image" content="https://waymo.com/static/images/waymo_banner.jpg">
+    <meta property="og:site_name" content="Waymo">
+
+    <link href="./Example Spec – Waymo_files/css" rel="stylesheet">
+    <link rel="preload" href="https://waymo.com/static/fonts/GT-Walsheim-Regular.woff" as="font" crossorigin="">
+  <noscript>
+    <link rel="stylesheet" href="/static/fonts/GT-Walsheim-Regular.woff">
+  </noscript>
+    <link rel="preload" href="https://waymo.com/static/fonts/GT-Walsheim-Medium.woff" as="font" crossorigin="">
+  <noscript>
+    <link rel="stylesheet" href="/static/fonts/GT-Walsheim-Medium.woff">
+  </noscript>
+
+    <link rel="stylesheet" href="./Example Spec – Waymo_files/main.min.css">
+
+    <!-- Google Tag Manager -->
+    <script type="text/javascript" id="www-widgetapi-script" src="./Example Spec – Waymo_files/www-widgetapi.js.download" async=""></script><script async="" src="./Example Spec – Waymo_files/gtm.js.download"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                                                                                    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                                                                                      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+     })(window,document,'script','dataLayer','GTM-KKT9SD7');</script>
+    <!-- End Google Tag Manager -->
+
+
+    <!-- Global site tag (gtag.js) - Google Ads: 863302626 -->
+    <script async="" src="./Example Spec – Waymo_files/js"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-863302626');
+    </script>
+    
+
+      <link rel="preconnect" crossorigin="" href="https://www.googletagmanager.com/">
+      <link rel="preconnect" crossorigin="" href="https://www.google.com/">
+
+
+  
+
+  
+
+
+<div class="header" data-scroll-header="">
+  <div class="grid grid--align-space-between grid--valign-middle">
+    <div class="grid__item grid__item--logo">
+      <a class="header__logo" href="https://waymo.com/intl/en_us/"></a>
+    </div>
+      <div class="grid__item grid__item--nav">
+        <a class="nav-toggle" ng-click="$root.menuToggled = !$root.menuToggled">
+          <div class="nav-toggle__icon"></div>
+        </a>
+        <div class="nav">
+            <div class="nav__item ">
+                <a class="nav__link" href="https://waymo.com/intl/en_us/open/">
+                  Home
+                </a>
+            </div>
+            <div class="nav__item ">
+                <a class="nav__link" href="https://waymo.com/intl/en_us/open/about/">
+                  About
+                </a>
+            </div>
+            <div class="nav__item ">
+
+
+
+
+<nav class="header-submenu nav__link           ng-scope" ng-controller="HeaderSubmenuController as menuCtrl1" ng-init="menuCtrl1.init(1)" ng-class="{&#39;header-submenu--open&#39;: menuCtrl1.submenuOpen}" data-desktop-breakpoint="900px">
+  <button class="header-submenu__title" ng-click="menuCtrl1.toggleSubmenu()">
+    Data
+  </button>
+
+  <ul class="header-submenu__items
+           header-submenu__items--nesting-level-1">
+    <li class="header-submenu__item header-submenu__item--mobile-back nav__item" ng-click="menuCtrl1.toggleSubmenu()">
+      <button class="nav__link">
+        Main Menu
+      </button>
+    </li>
+            <li class="header-submenu__item nav__item
+             
+             header-submenu__item--root">
+      <a class="nav__link" href="https://waymo.com/intl/en_us/open/data/motion/">
+        Motion
+      </a>
+    </li>
+
+
+            <li class="header-submenu__item nav__item
+             
+             ">
+      <a class="nav__link" href="https://waymo.com/intl/en_us/open/data/perception/">
+        Perception
+      </a>
+    </li>
+
+
+  </ul>
+</nav>            </div>
+            <div class="nav__item ">
+
+<div class="dataset-cta--simple ng-scope" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetLicenseAgreementSigned&#39;, &#39;.dataset-cta__button&#39;)">
+  <a class="dataset-cta__button nav__link" href="https://waymo.com/intl/en_us/open/licensing/" data-skip-to-link="/open/download/">
+    Download
+  </a>
+</div>            </div>
+            <div class="nav__item ">
+
+
+
+
+<nav class="header-submenu nav__link           ng-scope" ng-controller="HeaderSubmenuController as menuCtrl1" ng-init="menuCtrl1.init(1)" ng-class="{&#39;header-submenu--open&#39;: menuCtrl1.submenuOpen}" data-desktop-breakpoint="900px">
+  <button class="header-submenu__title" ng-click="menuCtrl1.toggleSubmenu()">
+    Challenges
+  </button>
+
+  <ul class="header-submenu__items
+           header-submenu__items--nesting-level-1">
+    <li class="header-submenu__item header-submenu__item--mobile-back nav__item" ng-click="menuCtrl1.toggleSubmenu()">
+      <button class="nav__link">
+        Main Menu
+      </button>
+    </li>
+            <li class="header-submenu__item nav__item
+             
+             header-submenu__item--root">
+      <a class="nav__link" href="https://waymo.com/intl/en_us/open/challenges/">
+        Overview
+      </a>
+    </li>
+
+
+            <li class="header-submenu__item nav__item
+             
+             ">
+      <a class="nav__link" href="https://waymo.com/intl/en_us/open/challenges/submissions/">
+        My Submissions
+      </a>
+    </li>
+
+
+        <div class="header-submenu__item header-submenu__item--separator "></div>
+                <li class="header-submenu__item nav__item
+             
+             header-submenu__item--root">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2022/3d-camera-only-detection/">
+          3D Camera-Only Detection
+
+  </a>
+    </li>
+
+                <li class="header-submenu__item nav__item
+             
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2022/3d-semantic-segmentation/">
+          3D Semantic Segmentation
+
+  </a>
+    </li>
+
+                <li class="header-submenu__item nav__item
+             
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2022/motion-prediction/">
+          Motion Prediction
+
+  </a>
+    </li>
+
+                <li class="header-submenu__item nav__item
+             
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2022/occupancy-flow-prediction-challenge/">
+          Occupancy and Flow Prediction
+
+  </a>
+    </li>
+
+
+        <div class="header-submenu__item header-submenu__item--separator "></div>
+        <nav class="header-submenu nav__link header-submenu--group                  ng-scope" ng-controller="HeaderSubmenuController as menuCtrl1" ng-init="menuCtrl1.init(2)" ng-class="{&#39;header-submenu--open&#39;: menuCtrl1.submenuOpen}" data-desktop-breakpoint="900px">
+
+        <button class="header-submenu__title" ng-click="menuCtrl1.toggleSubmenu()">
+          Past Challenges based on Perception Dataset
+        </button>
+
+        <ul class="header-submenu__items
+                header-submenu__items--nesting-level-2">
+
+            <li class="header-submenu__item nav__item header-submenu__item--group">
+
+            <button class="header-submenu__title header-submenu__item header-submenu__item--mobile-back nav__item nav__link" ng-click="menuCtrl1.toggleSubmenu()">
+              Back
+            </button>
+
+              <ul class="header-submenu__group">
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             header-submenu__item--root">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2020/3d-detection/">
+          3D Detection
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2021/real-time-3d-prediction/">
+          Real-time 3D Detection
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2020/2d-detection/">
+          2D Detection
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2021/real-time-2d-prediction/">
+          Real-time 2D Detection
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2020/3d-tracking/">
+          3D Tracking
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2020/2d-tracking/">
+          2D Tracking
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2020/domain-adaptation/">
+          Domain Adaptation
+
+  </a>
+    </li>
+
+              </ul>
+            </li>
+        </ul>
+
+        </nav>
+
+
+
+
+        <div class="header-submenu__item header-submenu__item--separator header-submenu__item--separator--thin"></div>
+        <nav class="header-submenu nav__link header-submenu--group                  ng-scope" ng-controller="HeaderSubmenuController as menuCtrl1" ng-init="menuCtrl1.init(2)" ng-class="{&#39;header-submenu--open&#39;: menuCtrl1.submenuOpen}" data-desktop-breakpoint="900px">
+
+        <button class="header-submenu__title" ng-click="menuCtrl1.toggleSubmenu()">
+          Past Challenges based on Motion Dataset
+        </button>
+
+        <ul class="header-submenu__items
+                header-submenu__items--nesting-level-2">
+
+            <li class="header-submenu__item nav__item header-submenu__item--group">
+
+            <button class="header-submenu__title header-submenu__item header-submenu__item--mobile-back nav__item nav__link" ng-click="menuCtrl1.toggleSubmenu()">
+              Back
+            </button>
+
+              <ul class="header-submenu__group">
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             header-submenu__item--root">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2021/motion-prediction/">
+          Motion Prediction
+
+  </a>
+    </li>
+
+                          <li class="header-submenu__item nav__item
+             header-submenu__item--secondary
+             ">
+
+  <a class="gated-link nav__link ng-scope" href="https://waymo.com/intl/en_us/open/challenges/terms/" ng-controller="DatasetCtaController as ctaCtrl" ng-init="ctaCtrl.init(&#39;datasetChallengeTermsAgreementAccepted&#39;)" data-skip-to-link="/intl/en_us/open/challenges/2021/interaction-prediction/">
+          Interaction Prediction
+
+  </a>
+    </li>
+
+              </ul>
+            </li>
+        </ul>
+
+        </nav>
+
+
+
+
+  </ul>
+</nav>            </div>
+            <div class="nav__item ">
+                <a class="nav__link" href="https://waymo.com/intl/en_us/open/faq/">
+                  FAQ
+                </a>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+<section class="dataset-hero">
+  <img class="dataset-hero__logo --desktop-only" alt="tf.Example Format" src="./Example Spec – Waymo_files/dataset-logo.svg">
+  <div class="dataset-hero__content">
+    <h1 class="dataset-hero__title">
+      tf.Example Format
+    </h1>
+    <div class="dataset-hero__images">
+      <div class="dataset-hero__main-img-container">
+        
+
+
+
+
+
+
+
+    <picture class="dataset-hero__main-img embiggen  embiggen">
+
+
+        <source media="(min-width: 900px)" data-srcset="/static/images/dataset/format/hero.jpg, /static/images/dataset/format/hero@2x.jpg 2x" srcset="/static/images/dataset/format/hero.jpg, /static/images/dataset/format/hero@2x.jpg 2x">
+
+
+
+        <source media="(min-width: 700px)" data-srcset="/static/images/dataset/format/mobile/hero@3x.jpg" srcset="/static/images/dataset/format/mobile/hero@3x.jpg">
+
+
+        <source data-srcset="/static/images/dataset/format/mobile/hero@2x.jpg 2x, /static/images/dataset/format/mobile/hero@3x.jpg 3x" srcset="/static/images/dataset/format/mobile/hero@2x.jpg 2x, /static/images/dataset/format/mobile/hero@3x.jpg 3x">
+
+      <img class="" data-src="/static/images/dataset/format/mobile/hero.jpg" src="./Example Spec – Waymo_files/hero.jpg">
+    </picture>
+
+
+      </div>
+        
+
+
+
+
+
+
+
+    <picture class="dataset-hero__overlay  ">
+
+
+        <source media="(min-width: 900px)" data-srcset="/static/images/dataset/format/hero-dots.png, /static/images/dataset/format/hero-dots@2x.png 2x" srcset="/static/images/dataset/format/hero-dots.png, /static/images/dataset/format/hero-dots@2x.png 2x">
+
+
+
+        <source media="(min-width: 700px)" data-srcset="/static/images/dataset/format/mobile/hero-dots@2x.png" srcset="/static/images/dataset/format/mobile/hero-dots@2x.png">
+
+
+        <source data-srcset="/static/images/dataset/format/mobile/hero-dots@2x.png 2x" srcset="/static/images/dataset/format/mobile/hero-dots@2x.png 2x">
+
+      <img class="" data-src="/static/images/dataset/format/mobile/hero-dots.png" src="./Example Spec – Waymo_files/hero-dots.png">
+    </picture>
+
+
+    </div>
+    <div class="dataset-hero__body">
+      <p>Each tf.Example proto will contain the same information as the Scenario protos, but all data has been converted to tensors for use in building TensorFlow models. Details in the table below.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dataset-text-section dataset-text-section--push-right ng-scope" ng-controller="DatasetTextSectionController as sectionCtrl" ng-init="sectionCtrl.init()">
+      <a class="deep-link" id="spec"></a>
+
+
+
+
+
+
+
+
+
+    <div class="dataset-text-section__table-container">
+      <table class="dataset-text-section__table" style="--num-columns: 5;">
+        <thead class="dataset-text-section__table-head">
+          <tr class="dataset-text-section__table-head-row">
+              <th class="dataset-text-section__table-header" style="width: 18%">
+                Key
+              </th>
+              <th class="dataset-text-section__table-header" style="width: 26%">
+                Description
+              </th>
+              <th class="dataset-text-section__table-header" style="width: 14%">
+                Tensor Dimensions (ignoring batch dimensions)
+              </th>
+              <th class="dataset-text-section__table-header" style="width: 8%">
+                Data Type
+              </th>
+              <th class="dataset-text-section__table-header" style="width: 34%">
+                Value Range
+              </th>
+          </tr>
+        </thead>
+        <tbody class="dataset-text-section__table-body">
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>roadgraph_samples/xyz</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The coordinate positions of the sampled map data points. Map polylines and polygons are sampled at 0.5 meters. The roadgraph_samples/dir feature gives the direction vector from each sample to the next sample.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_points, 3]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Any global coordinates, meters</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>roadgraph_samples/dir</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A unit direction vector for each map feature sample point.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_points, 3]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Unit vectors</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>roadgraph_samples/type</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A unique integer for each combination of map feature type and properties. See the table in the Value Range column.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_points, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[0, 19]. LaneCenter-Freeway = 1, LaneCenter-SurfaceStreet = 2, LaneCenter-BikeLane = 3, RoadLine-BrokenSingleWhite = 6, RoadLine-SolidSingleWhite = 7, RoadLine-SolidDoubleWhite = 8, RoadLine-BrokenSingleYellow = 9, RoadLine-BrokenDoubleYellow = 10, Roadline-SolidSingleYellow = 11, Roadline-SolidDoubleYellow=12, RoadLine-PassingDoubleYellow = 13, RoadEdgeBoundary = 15, RoadEdgeMedian = 16, StopSign = 17, Crosswalk = 18, SpeedBump = 19, other values are unknown types and should not be present.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>roadgraph_samples/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for each map sample point</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_points, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>roadgraph_samples/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A unique Integer ID for the vector map feature each sample is from.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_points, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Any 64 bit integer value</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>scenario/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A unique string ID for the scenario represented by this example.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>string</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A hexadecimal string</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters. For all state/{current,past,future}/xx fields, if there are less objects in the scene than num_objects, values are padded with -1. The state/{current,past,future}/valid flag indicates which values are populated with valid data for these tensors.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The y coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The z coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/bbox_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The heading angle of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the length axis of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/length</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The length of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Length in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/width</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The width of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Width in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/height</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The height of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Height in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/speed</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The speed of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Speed in m/s.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/vel_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The yaw angle of each object's velocity vector at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the velocity vector of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/velocity_x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/velocity_y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/current/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features state/current/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}. Indicates if the data at each element of the state/current/XX tensors is populated with valid data (rather than being padded with -1).</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The y coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The z coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/bbox_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The heading angle of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the length axis of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/length</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The length of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Length in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/width</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The width of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Width in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/height</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The height of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Height in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/speed</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The speed of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Speed in m/s.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/vel_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The yaw angle of each object's velocity vector at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the velocity vector of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/velocity_x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/velocity_y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/future/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features state/future/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}. Indicates if the data at each element of the state/future/XX tensors is populated with valid data (rather than being padded with -1).</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The y coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The z coordinate of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates, meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/bbox_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The heading angle of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the length axis of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/length</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The length of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Length in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/width</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The width of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Width in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/height</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The height of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Height in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/speed</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The speed of each object at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Speed in m/s.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/vel_yaw</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The yaw angle of each object's velocity vector at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Angle in radians. This is the angle to rotate a unit vector in the X direction in the X-Y plane to align with the velocity vector of the object bounding box.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/velocity_x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/velocity_y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The x component of the object velocity at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>m/s</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/past/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features state/past/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects, num_steps] = [128, 10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}. Indicates if the data at each element of the state/past/XX tensors is populated with valid data (rather than being padded with -1).</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/tracks_to_predict</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A vector of flags to indicate which objects to predict corresponding to the first dimension of the state/XX tensors. Up to 8 objects will be selected. For training and validation sets, these indicate which object must be present in the submission proto predictions. If exactly these objects are not predicted in the submission proto, the submission will fail. This field is also present in the training set as a reference for objects to train with, but you are free to choose other objects to train with.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>indices into the 1st dimension of the state/XX tensors.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/objects_of_interest</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A vector of flags to indicate which objects in the scene corresponding to the first dimension of the state/XX tensors have interactive behavior. Up to 2 objects will be selected. The objects in this list form an interactive group.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}. Indicates if the objects corresponding to the first dimension of the state/XX tensors have interactive behavior.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An integer ID for each object.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An object ID.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/is_sdc</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A mask to indicate if the object is the autonomous vehicle.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>state/type</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An integer type for each object (Vehicle, Pedestrian, or Cyclist)</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_objects]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Unset=0, Vehicle=1, Pedestrian=2, Cyclist=3, Other=4</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/state</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The state of each traffic light at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Unknown = 0, Arrow_Stop = 1, Arrow_Caution = 2, Arrow_Go = 3, Stop = 4, Caution = 5, Go = 6, Flashing_Stop = 7, Flashing_Caution = 8</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The X coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Y coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Z coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The lane ID controlled by each traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An integer lane ID.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features traffic_light_state/current/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [1, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/current/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each step corresponding to traffic_light_state/current/XX</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps] = [1]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/state</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The state of each traffic light at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Unknown = 0, Arrow_Stop = 1, Arrow_Caution = 2, Arrow_Go = 3, Stop = 4, Caution = 5, Go = 6, Flashing_Stop = 7, Flashing_Caution = 8</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The X coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Y coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Z coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The lane ID controlled by each traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An integer lane ID.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features traffic_light_state/future/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [80, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/future/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each step corresponding to traffic_light_state/current/XX</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps] = [80]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/state</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The state of each traffic light at each time step.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Unknown = 0, Arrow_Stop = 1, Arrow_Caution = 2, Arrow_Go = 3, Stop = 4, Caution = 5, Go = 6, Flashing_Stop = 7, Flashing_Caution = 8</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/x</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The X coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/y</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Y coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/z</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The Z coordinate of the stop light position. This point is at the beginning of the lane segment controlled by the traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>float</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Global coordinates in meters.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/id</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>The lane ID controlled by each traffic signal.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>An integer lane ID.</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/valid</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A valid flag for all elements of features traffic_light_state/future/XX. If set to 1, the element is populated with valid data, otherwise it is populated with -1.</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps, num_light_positions] = [10, 16]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>{0, 1}</p>
+                </td>
+            </tr>
+            <tr class="dataset-text-section__table-row">
+                <td class="dataset-text-section__table-cell">
+                    <p>traffic_light_state/past/timestamp_micros</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>A timestamp in microseconds for each step corresponding to traffic_light_state/past/XX</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>[num_steps] = [10]</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>int64</p>
+                </td>
+                <td class="dataset-text-section__table-cell">
+                    <p>Time in microseconds</p>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+</section>
+
+
+
+
+
+<div class="footer">
+  <div class="footer__wrap contained">
+      <div class="footer__left">
+        <a class="footer__logo" href="https://waymo.com/intl/en_us/">
+          <img src="./Example Spec – Waymo_files/logo.svg">
+        </a>
+      </div>
+
+    <div class="footer__nav grid grid--1-cols grid--2-cols--gt-xs">
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/faq/">FAQ</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://blog.waymo.com/">Blog</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/privacy/">Privacy Policy</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/open/">Open Dataset</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/terms/">Terms</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/legal/patents/">Legal</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/zero-tolerance/">Zero Tolerance</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/firstresponders/">First Responders</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/safety/">Safety Report</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://ltad.com/">Let's Talk Autonomous Driving</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/contact/">Contact Us</a>
+        </div>
+
+        <div class="footer__nav__item grid__item">
+          <a href="https://waymo.com/intl/en_us/coronavirus/">COVID-19 Resources</a>
+        </div>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="footer__bottom__copyright">
+      © 2019-2021 Waymo LLC
+    </div>
+    <div class="footer__bottom__social">
+      <ul class="footer__bottom__social__links">
+          <li class="footer__bottom__social__links__link">
+            <a href="https://www.instagram.com/waymo/?hl=en" data-g-event="Press:Icon" data-g-label="">
+              
+
+
+
+
+
+
+
+    <img class="  " data-src="/static/images/social/footer_instagram.svg" src="./Example Spec – Waymo_files/footer_instagram.svg">
+
+
+
+            </a>
+          </li>
+          <li class="footer__bottom__social__links__link">
+            <a href="https://twitter.com/waymo/" data-g-event="Press:Icon" data-g-label="">
+              
+
+
+
+
+
+
+
+    <img class="  " data-src="/static/images/social/footer_twitter.svg" src="./Example Spec – Waymo_files/footer_twitter.svg">
+
+
+
+            </a>
+          </li>
+          <li class="footer__bottom__social__links__link">
+            <a href="https://facebook.com/waymo/" data-g-event="Press:Icon" data-g-label="">
+              
+
+
+
+
+
+
+
+    <img class="  " data-src="/static/images/social/footer_facebook.svg" src="./Example Spec – Waymo_files/footer_facebook.svg">
+
+
+
+            </a>
+          </li>
+          <li class="footer__bottom__social__links__link">
+            <a href="https://www.youtube.com/waymo" data-g-event="Press:Icon" data-g-label="">
+              
+
+
+
+
+
+
+
+    <img class="  " data-src="/static/images/social/footer_youtube.svg" src="./Example Spec – Waymo_files/footer_youtube.svg">
+
+
+
+            </a>
+          </li>
+          <li class="footer__bottom__social__links__link">
+            <a href="https://www.linkedin.com/company/waymo" data-g-event="Press:Icon" data-g-label="">
+              
+
+
+
+
+
+
+
+    <img class="  " data-src="/static/images/social/footer_linkedin.svg" src="./Example Spec – Waymo_files/footer_linkedin.svg">
+
+
+
+            </a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>  
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KKT9SD7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <script type="text/javascript" src="./Example Spec – Waymo_files/intersection-observer.min.js.download"></script>
+
+  <script src="./Example Spec – Waymo_files/angular.min.js.download"></script>
+
+    <script src="./Example Spec – Waymo_files/autotrack.js.download"></script>
+    <script>
+      var autotrack = new gweb.analytics.AutoTrack({profile: 'UA-62642502-1'});
+    </script>
+
+  <script src="./Example Spec – Waymo_files/main.min.js.download"></script>
+  <script>
+   way.main();
+  </script>
+  <script>
+   way.initVideoFallback({
+     imageSelector: '.ak-video-fallback .ak-video-fallback__image',
+     breakpoint: 900
+   });
+  </script>
+
+    <img src="./Example Spec – Waymo_files/tr" height="1" width="1" style="display:none" dl82z7dmf="">
+
+</div><div class="ak-modal"><div class="ak-modal-x" aria-label="Close" role="button" tabindex="0"></div><div class="ak-modal-mask"></div><div class="ak-modal-content"></div></div><div class="ak-youtubemodal" aria-modal="true" role="dialog"><div class="ak-youtubemodal-x" aria-label="Close video player" role="button" tabindex="0"></div><div class="ak-youtubemodal-attribution"></div><div class="ak-youtubemodal-player"></div><div class="ak-youtubemodal-mask"></div></div><script src="./Example Spec – Waymo_files/iframe_api"></script></body></html>

@@ -1,6 +1,6 @@
 import multiprocessing
 import os
-
+import argparse
 import cv2
 import numcodecs
 import numpy as np
@@ -12,7 +12,7 @@ from tqdm import tqdm
 
 numcodecs.blosc.set_nthreads(1)
 
-DATA_PATH = "/home/data/waymo/testing/"
+DATA_PATH = "C:/Users/Laurens/Desktop/MasterThesis/data_cleaned/validation/"
 files = os.listdir(DATA_PATH)
 dataset = tf.data.TFRecordDataset([DATA_PATH + f for f in files], num_parallel_reads=1)
 # dataset = dataset.shard(8, 0)
@@ -209,6 +209,38 @@ road_colors = [
     "#236075",
 ]
 
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--data", type=str, required=True, help="Path to raw data")
+    parser.add_argument("--out", type=str, required=True, help="Path to save data")
+    parser.add_argument(
+        "--no-valid", action="store_true", help="Use data with flag `valid = 0`"
+    )
+    parser.add_argument(
+        "--use-vectorize", action="store_true", help="Generate vector data"
+    )
+    parser.add_argument(
+        "--n-jobs", type=int, default=1, required=False, help="Number of threads"
+    )
+    parser.add_argument(
+        "--n-shards",
+        type=int,
+        default=8,
+        required=False,
+        help="Use `1/n_shards` of full dataset",
+    )
+    parser.add_argument(
+        "--each",
+        type=int,
+        default=0,
+        required=False,
+        help="Take `each` sample in shard",
+    )
+
+    args = parser.parse_args()
+
+    return args
 
 def hex_to_rgb(value):
     value = value.lstrip("#")
@@ -760,7 +792,7 @@ def vectorize(
     return GRES
 
 
-def merge(data, proc_id, validate):
+def merge(data, proc_id, validate, out_dir, use_vectorize=False, max_rand_int=10000000000):
 
     parsed = tf.io.parse_single_example(data, features_description)
     raster_data = rasterize(
@@ -827,9 +859,10 @@ def merge(data, proc_id, validate):
     to_return = []
     for i in range(len(raster_data)):
         raster_data[i]["vector_data"] = vector_data[i].astype(np.float16)
-        filename = f"{idx2type[int(raster_data[i]['self_type'])]}_{proc_id}_{str(i).zfill(5)}_{np.random.randint(10000000000)}.npz"
+        r = np.random.randint(max_rand_int, dtype=np.int64)
+        filename = f"{idx2type[int(raster_data[i]['self_type'])]}_{proc_id}_{str(i).zfill(5)}_{r}.npz"
         np.savez_compressed(
-            f"/home/brodt/kaggle/waymo/motion_prediction/test/{filename}",
+            os.path.join(out_dir, filename),
             **raster_data[i],
         )
         to_return.append(
@@ -843,25 +876,36 @@ def merge(data, proc_id, validate):
 
 
 if __name__ == "__main__":
-    num_jobs = 20
-    p = multiprocessing.Pool(num_jobs)
+    args = parse_arguments()
+    print(args)
+
+    if not os.path.exists(args.out):
+        os.mkdir(args.out)
+
+    files = os.listdir(args.data)
+    dataset = tf.data.TFRecordDataset(
+        [os.path.join(args.data, f) for f in files], num_parallel_reads=1
+    )
+    if args.n_shards > 1:
+        dataset = dataset.shard(args.n_shards, args.each)
+
+    p = multiprocessing.Pool(args.n_jobs)
     proc_id = 0
     res = []
-    loss_index = []
-    asd = 0
     for data in tqdm(dataset.as_numpy_iterator()):
         proc_id += 1
         res.append(
-            p.apply_async(merge, kwds=dict(data=data, proc_id=proc_id, validate=True))
+            p.apply_async(
+                merge,
+                kwds=dict(
+                    data=data,
+                    proc_id=proc_id,
+                    validate=not args.no_valid,
+                    out_dir=args.out,
+                    use_vectorize=args.use_vectorize,
+                ),
+            )
         )
-        # if asd == 10:
-        # break
-        # asd += 1
-
-    print(len(res))
 
     for r in tqdm(res):
-        loss_index.extend(r.get())
-
-    df = pd.DataFrame(loss_index)
-    df.to_csv("/home/brodt/kaggle/waymo/dev/loss_index.csv", index=False)
+        r.get()

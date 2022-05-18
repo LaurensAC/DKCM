@@ -1,6 +1,6 @@
 import argparse
 import os
-
+import math
 import numpy as np
 import torch
 from matplotlib import pyplot as plt
@@ -35,6 +35,11 @@ def main():
         num_workers=1,
         shuffle=False,
     )
+    ADE = []
+    mADE = []
+
+    FDE = []
+    mFDE = []
 
     iii = 0
     with torch.no_grad():
@@ -56,6 +61,34 @@ def main():
 
             X, idx = V[:, :44], V[:, 44].flatten()
 
+
+
+            logits = logits.squeeze(0).cpu().numpy()
+            y = y.squeeze(0).cpu().numpy()
+            is_available = is_available.squeeze(0).long().cpu().numpy()
+            confidences = confidences.squeeze(0).cpu().numpy()
+
+            # Calculate (m)ADE and (m)FDE
+            distance = []
+            f_distance = []
+            for traj_id in range(len(logits)):
+                distances = []
+                for i in range(len(is_available)):
+                    if is_available[i]:
+                        distances.append(math.dist(logits[traj_id][i], y[i]))
+                f_distance.append(distances[-1])
+                distance.append(np.mean(distances))
+
+            ADE.append(np.mean(distance))
+            mADE.append(np.min(distance))
+
+            FDE.append(np.mean(f_distance))
+            mFDE.append(np.min(f_distance))
+
+
+            iii += 1
+            if iii > args.n_samples:
+                continue
             figure(figsize=(15, 15), dpi=80)
             for i in np.unique(idx):
                 _X = X[idx == i]
@@ -66,10 +99,6 @@ def main():
                 plt.xlim([-224 // 4, 224 // 4])
                 plt.ylim([-224 // 4, 224 // 4])
 
-            logits = logits.squeeze(0).cpu().numpy()
-            y = y.squeeze(0).cpu().numpy()
-            is_available = is_available.squeeze(0).long().cpu().numpy()
-            confidences = confidences.squeeze(0).cpu().numpy()
             plt.plot(
                 y[is_available > 0][::10, 0],
                 y[is_available > 0][::10, 1],
@@ -98,16 +127,18 @@ def main():
                     )
 
 
-            plt.title(loss.item())
+            plt.title("Base cnn: " + str(loss.item()))
             plt.legend()
             plt.savefig(
                 os.path.join(args.save, f"{iii:0>2}_{loss.item():.3f}.png")
             )
             plt.close()
 
-            iii += 1
-            if iii == args.n_samples:
-                break
+
+        print(np.mean(mADE))
+        print(np.mean(ADE))
+        print(np.mean(mFDE))
+        print(np.mean(FDE))
 
 
 if __name__ == "__main__":

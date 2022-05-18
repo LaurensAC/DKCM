@@ -186,7 +186,7 @@ class WaymoLoader(Dataset):
                 data["_gt_marginal"],
                 data["gt_marginal"],
             )
-       
+
         trajectory = data["gt_marginal"]
 
         is_available = data["future_val_marginal"]
@@ -314,7 +314,7 @@ def main():
                         y, logits, confidences_logits, is_available
                     )
                     val_losses.append(loss.item())
-
+                print("Validation loss: " + str(np.mean(val_losses)))
                 summary_writer.add_scalar("dev/loss", np.mean(val_losses), iteration)
 
             saver("model_last.pth")

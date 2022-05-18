@@ -1,0 +1,25 @@
+
+Base cnn 30 minutes/9k iterations,batch size 8, 10% data, model_basecnn, 6.3it/s
+metric     8s
+val loss   435.9                   
+mADE       2.111
+ADE        7.261
+mFDE       4.699
+FDE        17.694
+
+KF 3 hours/9k iterations, batch size 8, 10% data, model_kf, 1.05it/s
+metric   8s                
+val loss 705.4       
+mADE     2.378 
+ADE      5.760
+mFDE     5.731
+FDE      14.853
+
+KF (clamp) 3 hours/9k iterations, batch size 8, 10% data, model_kf_clamp.pt, 1.0it/s
+metric   8s                
+val loss 700.0       
+mADE     2.524 
+ADE      6.156
+mFDE     5.962
+FDE      15.329
+

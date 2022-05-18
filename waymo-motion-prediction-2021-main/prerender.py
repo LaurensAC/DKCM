@@ -795,8 +795,8 @@ def merge(
         )
 
     for i in range(len(raster_data)):
-        if idx2type[int(raster_data[i]['self_type'])] != 'cyclist':
-            continue
+        #if idx2type[int(raster_data[i]['self_type'])] != 'cyclist':
+        #    continue
         if use_vectorize:
             raster_data[i]["vector_data"] = vector_data[i].astype(np.float16)
 
